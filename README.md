@@ -1,7 +1,7 @@
 # Soju docker
 ---
 
-[![Build](https://github.com/oxbian/soju-docker/actions/workflows/build.yml/badge.svg)](https://github.com/oxbian/soju-docker/actions/workflows/build.yml)
+[![Build](https://github.com/Oxbian/soju-dockerfile/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Oxbian/soju-dockerfile/actions/workflows/docker-publish.yml)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [Soju](https://git.sr.ht/~emersion/soju/) is an IRC bouncer used by projects like sourcehut, for their chat.
