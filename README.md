@@ -11,7 +11,7 @@
 To install and use this Dockerfile, just pull it and run it.
 
 ```sh
-docker pull  
+docker pull ghcr.io/oxbian/soju-dockerfile:main
 ```
 
 ## Configuration
@@ -27,7 +27,6 @@ chmod 400 soju.pem
 
 ### Environment variables
 
-- **CONFIG**: soju configuration filepath
 - **ADMIN**: admin username
 - **PASSWORD**: admin password (use a strong password)
 - **LISTEN_PROTOCOL**: protocol used for soju connection [list here](https://git.sr.ht/~emersion/soju/tree/master/item/doc/soju.1.scd#L81)
@@ -56,7 +55,7 @@ chmod 400 soju.pem
 ### Run the image from the CLI
 
 ```sh
-docker run -e CONFIG='PATH_TO_CONFIG' -e ADMIN='admin' -e PASSWORD='complicatedpassword' -e LISTEN_PROTOCOL='PROTOCOL' -e LISTEN_HOST='0.0.0.0' -e LISTEN_PORT='6667' oxbian/soju
+docker run -e ADMIN='admin' -e PASSWORD='complicatedpassword' -e LISTEN_PROTOCOL='PROTOCOL' -e LISTEN_HOST='0.0.0.0' -e LISTEN_PORT='6667' oxbian/soju:main
 ```
 
 ### Run the image from docker compose
@@ -65,14 +64,16 @@ docker run -e CONFIG='PATH_TO_CONFIG' -e ADMIN='admin' -e PASSWORD='complicatedp
 version: "3.7"
 services:
   soju:
-    image: oxbian/soju:latest
     container_name: soju
+    image: oxbian/soju:main
     volumes:
-      - PATH_TO_SOJU/data:/data
+      - PATH_TO_SOJU_DATA:/data
     ports:
-      - "6667:6667"
+      - 6667:6667
+    # TLS
+    # - 6697:6697
     environment:
-      - USER=admin
+      - ADMIN=admin
       - PASSWORD=complicatedpassword
       - LISTEN_PROTOCOL=PROTOCOL
       - LISTEN_HOST=0.0.0.0
