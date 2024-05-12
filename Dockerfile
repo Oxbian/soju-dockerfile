@@ -9,9 +9,6 @@ RUN git clone https://git.sr.ht/~emersion/soju
 WORKDIR /soju
 RUN make && make install
 
-COPY --from=0 /soju/soju /usr/local/bin/
-COPY --from=0 /soju/sojuctl /usr/local/bin/
-
 # Exposing data volume
 VOLUME /data
 
