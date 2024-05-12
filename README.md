@@ -65,7 +65,7 @@ version: "3.7"
 services:
   soju:
     container_name: soju
-    image: oxbian/soju:main
+    image: ghcr.io/oxbian/soju-dockerfile:main
     volumes:
       - PATH_TO_SOJU_DATA:/data
     ports:
