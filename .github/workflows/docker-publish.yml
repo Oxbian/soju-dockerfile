@@ -2,6 +2,9 @@ name: Docker publish
 
 # publish everyday at 6am every 3 days
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: '0 6 * * */3'
 
