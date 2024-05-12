@@ -2,7 +2,7 @@
 set -e
 
 VOLUME="/data"
-CONFIG="$volume/soju.conf"
+CONFIG="$VOLUME/soju.conf"
 
 [ -f "$CONFIG" ] && printf "A configuration file already exist, if you want to reconfigure please edit manually or delete this file\n" && exit 1
 [ -z "$ADMIN" ] && printf "Please setup admin username with the environment variable ADMIN\n" && exit 1
@@ -29,7 +29,7 @@ fi
 
 echo "listen $LISTEN_PROTOCOL://$LISTEN_HOST:$LISTEN_PORT" >> "$CONFIG"
 
-if [ -e "$VOLUME/soju.db" ] || ([ -z "$DB_TYPE"] && [ -z "$DB_SOURCE" ]); then
+if [ -e "$VOLUME/soju.db" ] || [ \( -z "$DB_TYPE" \) && \( -z "$DB_SOURCE" \) ]); then
 	printf "%s" "$PASSWORD"	| sojuctl -config "$CONFIG" create-user "$ADMIN" -admin
 	if [ -z "$DB_TYPE" ]; then
 		echo "db $DB_TYPE $DB_SOURCE" >> "$CONFIG"
@@ -48,5 +48,5 @@ fi
 [ -z "$FILEUP_TYPE" ] && [ -z "$FILEUP_SOURCE" ] && echo "file-upload $FILEUP_TYPE $FILEUP_SOURCE" >> "$CONFIG"
 [ -z "$MOTD" ] && echo "motd $MOTD" >> "$CONFIG"
 
-cd $VOLUME && soju -config $CONFIG
+cd $VOLUME && soju -config "$CONFIG"
 
