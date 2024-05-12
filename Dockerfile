@@ -2,7 +2,7 @@ FROM alpine
 
 LABEL maintainer="oxbian"
 
-RUN apk add --no-cache go git make scdoc gcc
+RUN apk add --no-cache go git make scdoc gcc musl-dev
 
 # Installing soju
 RUN git clone https://git.sr.ht/~emersion/soju
