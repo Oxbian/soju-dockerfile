@@ -30,7 +30,7 @@ fi
 echo "listen $LISTEN_PROTOCOL://$LISTEN_HOST:$LISTEN_PORT" >> "$CONFIG"
 
 if [ -e "$VOLUME/soju.db" ] || [ \( -z "$DB_TYPE" \) && \( -z "$DB_SOURCE" \) ]); then
-	printf "%s" "$PASSWORD"	| sojuctl -config "$CONFIG" create-user "$ADMIN" -admin
+	printf "%s" "$PASSWORD"	| sojudb -config "$CONFIG" create-user "$ADMIN" -admin
 	if [ -z "$DB_TYPE" ]; then
 		echo "db $DB_TYPE $DB_SOURCE" >> "$CONFIG"
 	else
